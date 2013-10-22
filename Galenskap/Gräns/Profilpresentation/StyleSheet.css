@@ -1,0 +1,60 @@
+body {
+}
+.h3 {
+    margin-left: 10px;
+}
+img {
+    margin-left: 300px;
+    margin-top: -200px;
+}
+td {
+    color: #000;
+}
+#td1 {
+    color: #f00;
+}
+.Table1 {
+    color: #fff;
+    background-color: #fff;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+#header {
+	z-index: 1;
+	position: fixed;
+	width: 100%;
+	margin-top: -20px;
+	height: 60px;
+	background-color: #373535;
+	margin-bottom: 10px;
+    border-radius: 5px;
+}
+.left {
+	position: relative;
+	float: left;
+	margin-top: 50px;
+	width: 10%;
+	height: 400px;
+	background-color: #808080;
+	margin-bottom: 10px;
+}
+
+.right {
+	position: relative;
+	float: right;
+	margin-top: 50px;
+	width: 88%;
+	height: 1000px;
+	background-color: #9e9c9c;
+	margin-bottom: 10px;
+}
+#name {
+	float:left;
+	color: #000;
+    margin-left: 10px;
+}
+#email{
+	float:right;
+	color: #000;
+    margin-right: 10px;
+}

@@ -1,0 +1,77 @@
+body {
+background-image: url("Koala.jpg");
+background-size: cover;
+}
+.Menywrapper {
+    
+	
+     border: 5px solid white;
+    margin: auto;
+    padding: 10px;
+    background: rgba(172, 238, 165, 0.34);
+}
+
+.Wrapper {
+    width: 80%;
+    margin: auto;
+}
+.Contentwrapper {
+    margin: auto;
+    min-height: 1000px;
+    background: rgba(172, 238, 165, 0.34); 
+}
+.Menywrapper ul {
+    list-style: none;
+}
+
+.Menywrapper ul li {
+        
+        
+        -moz-box-shadow: 0px 13px 14px -7px #631212;
+        -webkit-box-shadow: 0px 13px 14px -7px #631212;
+        box-shadow: 0px 13px 14px -7px #631212;
+        
+        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #b01313), color-stop(1, #a10909));
+        background:-moz-linear-gradient(top, #b01313 5%, #a10909 100%);
+        background:-webkit-linear-gradient(top, #b01313 5%, #a10909 100%);
+        background:-o-linear-gradient(top, #b01313 5%, #a10909 100%);
+        background:-ms-linear-gradient(top, #b01313 5%, #a10909 100%);
+        background:linear-gradient(to bottom, #b01313 5%, #a10909 100%);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#b01313', endColorstr='#a10909',GradientType=0);
+        
+        background-color:#b01313;
+        
+        -moz-border-radius:17px;
+        -webkit-border-radius:17px;
+        border-radius:17px;
+        
+        border:2px solid #541818;
+        
+        display:inline-block;
+        color:#d9c5c5;
+        font-family:arial;
+        font-size:20px;
+        font-weight:bold;
+        padding:12px 32px;
+        text-decoration:none;
+        
+        text-shadow:0px 3px 0px #614646;
+        
+    }
+    .Menywrapper ul li:hover {
+        
+        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #a10909), color-stop(1, #b01313));
+        background:-moz-linear-gradient(top, #a10909 5%, #b01313 100%);
+        background:-webkit-linear-gradient(top, #a10909 5%, #b01313 100%);
+        background:-o-linear-gradient(top, #a10909 5%, #b01313 100%);
+        background:-ms-linear-gradient(top, #a10909 5%, #b01313 100%);
+        background:linear-gradient(to bottom, #a10909 5%, #b01313 100%);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a10909', endColorstr='#b01313',GradientType=0);
+        
+        background-color:#a10909;
+    }
+    .Menywrapper ul li:active {
+        position:relative;
+        top:1px;
+    }
+

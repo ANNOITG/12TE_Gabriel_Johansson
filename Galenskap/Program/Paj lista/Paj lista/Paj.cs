@@ -13,12 +13,12 @@ namespace Paj_lista
             counter++;
         }
          public string pajnamn { get; set; }
-         public int pajsmak { get; set; }//Från 1 till 10
+         public string pajsmak { get; set; }//Smak på pajerna
          public string pajingred { get; set; }
 
          public override string ToString()
          {
-             return "Pajnamn: " + pajnamn + "\npajsmak: " + pajsmak + "\nIngredienser: " + pajingred;
+             return "Pajnamn: " + pajnamn + "\npajsmak: " + pajsmak + "\nIngredienser: " + pajingred;//Utskrivningar av pajer och deras information
          }
     }
 }

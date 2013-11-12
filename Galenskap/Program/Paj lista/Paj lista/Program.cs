@@ -15,7 +15,9 @@ namespace Paj_lista//Namn
             myPaj.Add(new Paj() { pajnamn = "Blåbärs paj", pajsmak = "Blåbär", pajingred = "Blåbär" });
             myPaj.Add(new Paj() { pajnamn = "Hallon paj", pajsmak = "Hallon", pajingred = "Hallon" });
 
-            /*Console.WriteLine("Vilken paj baserat på personnummer; vill du ta fram?");
+            myPaj.Sort();
+            
+            /*Console.WriteLine("Vilken paj baserat på pajnamn; vill du ta fram?");
             string pajnamn = Console.ReadLine();
             Paj paj = myPaj.Single(p => p.pajnamn == pajnamn);*/
 

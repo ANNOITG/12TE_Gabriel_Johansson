@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Paj_lista
 {
-    class Paj
+    class Paj: IComparable
     {
         public static int counter { get; set; }
          public Paj()
@@ -15,6 +15,23 @@ namespace Paj_lista
          public string pajnamn { get; set; }
          public string pajsmak { get; set; }//Smak på pajerna
          public string pajingred { get; set; }
+
+         public int CompareTo(object paj)
+         {
+
+             if (this.pajnamn == ((Paj)paj).pajnamn)
+             {
+                 return 0;
+             }
+             else if (this.pajnamn.CompareTo(((Paj)paj).pajnamn) < 1)
+             {
+                 return -1;
+             }
+             else
+             {
+                 return 1;
+             }
+         }
 
          public override string ToString()
          {

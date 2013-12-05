@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Galenskap" Class="LTSTDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Galenskap.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" SettingsObjectName="FORMAPP2.Properties.Settings" SettingsPropertyName="GalenskapConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Galningar" Member="Galningars">
+    <Type Name="Galningar">
+      <Column Name="Galning_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Galning_Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Born" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="From_Location" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Info" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Galenskap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

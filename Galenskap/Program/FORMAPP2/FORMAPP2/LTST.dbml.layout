@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LTST">
+  <DataContextMoniker Name="/LTSTDataContext" />
+  <nestedChildShapes>
+    <classShape Id="c090dcc1-65ea-4717-9684-1d25fc45dc6d" absoluteBounds="1, 0.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/LTSTDataContext/Galningar" />
+      <nestedChildShapes>
+        <elementListCompartment Id="56ded8b8-ecc7-4aab-a723-9b97b4c0769c" absoluteBounds="1.0150000000000001, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Store";
+     var db = Database.Open("StarterSite");
+    var selectQueryString = "SELECT * FROM Product ORDER BY Name";
+}
+
+<hgroup class="title">
+    <h1>@Page.Title.</h1>
+    <h2>Work in progress!</h2>
+</hgroup>
+<section class="store">
+    <header>
+        <h3>Dyra ostar Lagring (20-100 år):</h3>
+    </header>
+    <p>
+        <span class="label">Gabriels special:</span>
+        <span>En av de mest smakrika och erfarna ostarna som finns, Den har lagrats i 94 år och har därför funnits i flera generationer tillbaka. $20.000.000</span>
+        <a href="store" class="storeb">Köp</a>    
+    </p>
+    <p>
+        <span class="label">Badrumslagrad ost:</span>
+        <span>En kraftfull ost med en distinkt smak av badrum, har lagrats i 22 år. $4.000.000</span>
+        <a href="store" class="storeb">Köp</a>
+    </p>
+    <p>
+        <span class="label">Svartmögel ost:</span>
+        <span>Denna ost har lagrats i 30 år inuti en vägg som inehöll svartmögel. !OBS Denna ost är inte till för att ätas, om den skulle ätas kan det oraska skador. $5.000.000</span>
+        <a href="store" class="storeb">Köp</a>
+    </p>
+    <header>
+        <h3>Dessert ostar:</h3>
+    </header>
+    <p>
+        <span class="label">Choklad doppad ost:</span>
+        <span>Det är en helt vanlig ost med ett tjockt Choklad täcke. Osten är lite mer elastisk och har en mild smak för att passa med den söta chocoladen. Den har endast lagrats i 2 år. $5.000</span>
+        <a href="store" class="storeb">Köp</a>
+    </p>
+</section>
+<title>Small Ost Products</title>
+    <style>
+        table, th, td {
+            border: solid 1px #bbbbbb;
+            border-collapse: collapse;
+            padding: 2px;
+        }
+    </style>
+</head>
+    <h1>Small Ost Products</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>ThumbNail</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in db.Query(selectQueryString))
+            {
+                <tr>
+                    <td>@row.Id</td>
+                    <td>@row.Name</td>
+                    <td>@row.Description</td>
+                    <td>@row.Price</td>
+                    <td><img src="@Href("~/" + row.ThumbImg)" alt="Thumbnail missing" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+

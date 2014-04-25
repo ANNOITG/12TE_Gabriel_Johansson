@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    PageData["Title"] = "Subscriber only";
+}
+
+@if ( Roles.IsUserInRole("subscriber")) {
+    <span> Welcome <b>@WebSecurity.CurrentUserName</b>! </span>
+}
+else if ( Roles.IsUserInRole("admin")) {
+    <span> Welcome <b>@WebSecurity.CurrentUserName</b>! </span>
+}
+else {
+     Response.Redirect("~/SubError");
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        
+    </body>
+</html>

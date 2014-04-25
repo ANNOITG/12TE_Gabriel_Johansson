@@ -1,0 +1,68 @@
+﻿@{
+    Validation.RequireField("Username", "You must enter a Username");
+    Validation.RequireField("Password", "Password is required");
+    Validation.RequireField("Email", "You haven't entered a email");
+
+    var Username = "";
+    var Password = "";
+    var Email = "";
+
+    if(IsPost && Validation.IsValid()){
+        Username = Request.Form["Username"];
+        Password = Request.Form["Password"];
+        Email = Request.Form["Email"];
+        var db = Database.Open("WebPagesAccounts");
+        var insertCommand = "INSERT INTO Accounts (Username, Password, Email) VALUES(@0, @1, @2)";
+        db.Execute(insertCommand, Username, Password, Email);
+        Response.Redirect("~/Register");
+    }
+    
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="stylesheet.css"/> <!-- Länk till css -->
+<meta charset="utf-8" />
+<title>Register</title>
+</head>
+<body>
+    <div class= "Wrapper">
+        <div class="Menywrapper">
+        <ul>
+                    <li class= "Linkreg"><a href="index.cshtml">Home</a></li>
+                    <li class= "Linkreg"><a href="Register.cshtml">Register</a></li>
+                    <li class= "Linkreg"><a href="Login.cshtml">Login</a></li>
+                </ul>
+            </div>
+        <div class="Contentwrapper">
+             <h1></h1>
+               <h1></h1>
+            <h1>Register</h1>
+    @Html.ValidationSummary()
+  <form method="post">
+    <fieldset>
+      <legend>Account information</legend></legend>
+      <p class="AI"><label for="Username">Username:</label><br />
+         <input type="text" name="Username" value="@Request.Form["Username"]" />
+          @Html.ValidationMessage("Username")
+      </p>
+
+      <p class="AI"><label for="Password">Password:</label><br />
+         <input type="password" name="Password" value="@Request.Form["Password"]" />
+          @Html.ValidationMessage("Password")
+      </p>
+
+      <p class="AI"><label for="Email">Email:</label><br />
+         <input type="text" name="Email" value="@Request.Form["Email"]" />
+          @Html.ValidationMessage("Email")
+      </p>
+
+      <p><input type="submit" name="buttonSubmit" value="Register" /></p>
+    </fieldset>
+  </form>
+            </div>
+            </div>
+  
+</body>
+</html>

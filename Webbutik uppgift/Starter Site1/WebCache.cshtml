@@ -1,0 +1,39 @@
+﻿@{
+    var theKey = WebSecurity.CurrentUserId.ToString();
+    
+    IList<int> kundvagn = (List<int>)WebCache.Get(theKey);
+    
+    if(kundvagn == null)
+    {
+        kundvagn = new List<int>();
+        
+        kundvagn.Add(Request["ID"].AsInt());
+        
+        WebCache.Set(theKey, kundvagn);
+    }
+    else
+    {
+        kundvagn.Add(Request["ID"].AsInt());
+    }
+    
+    var db = Database.Open("StarterSite");
+    var queryString = "Select * from Product where ";
+    for (int i = 0; i < kundvagn.Count; i++)
+    {
+        queryString += "ProductID = " + kundvagn[i];
+
+        if( (i + 1) != kundvagn.Count)
+        {
+            queryString += " or ";
+        }
+    }
+
+    var produkter = db.Query(queryString);
+    
+    foreach(var vara in produkter)
+    {
+        <div class="vagnVara">
+            <p>@vara.Name | @vara.price | <img src="@Href(vara.ThumbImg)" /></p>
+        </div>
+    }
+}

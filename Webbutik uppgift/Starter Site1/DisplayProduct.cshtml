@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "UpdateProducts";
+
+    var db = Database.Open("StarterSite");
+    var prod = db.QuerySingle("Select * from Product where Id =" + Request["ID"]);
+
+
+}
+<div>
+    <p>@prod.Name</p>
+    <p><img class="DinMamma" alt ="No image found" src="@prod.ImagePath"></p>
+    <p>@prod.Description</p>
+</div>

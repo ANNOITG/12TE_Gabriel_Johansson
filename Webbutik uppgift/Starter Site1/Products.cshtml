@@ -1,0 +1,106 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Products";
+
+    if ( Roles.IsUserInRole("admin"))
+    {
+        <span> Welcome <b>@WebSecurity.CurrentUserName</b>! </span>
+    }
+    else
+    {
+        Response.Redirect("~/AdminError");
+    }
+
+    WebImage photo = null;
+    var newFileName = "";
+    var imagePath = "";
+    var imageThumbPath = "";
+
+    Validation.RequireField("Name", "Product name is required.");
+    Validation.RequireField("Description", "Product description is required.");
+    Validation.RequireField("Price", "Product price is required.");
+
+
+    var db = Database.Open("Startersite");
+    var Name = Request.Form["Name"];
+    var Description = Request.Form["Description"];
+    var Price = Request.Form["Price"];
+
+    if (IsPost && Validation.IsValid()) {
+        
+        // Define the insert query. The values to assign to the
+        // columns in the Product table are defined as parameters
+        // with the VALUES keyword.
+         photo = WebImage.GetImageFromRequest(Request["Image"]);
+        if(photo != null)
+        {
+             newFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(photo.FileName);
+            
+            imagePath = @"ProdImg/" + newFileName;
+            photo.Save(@"~/" + imagePath);
+
+            imageThumbPath = @"ProdImg/Thumb" + newFileName;
+            photo.Resize(width: 60, height: 60, preserveAspectRatio: true,
+                preventEnlarge: true);
+            photo.Save(@"~/" + imageThumbPath);
+
+            var insertQuery = "INSERT INTO Product (Name, Description, Price, imagePath, ThumbImg) " +
+                "VALUES (@0, @1, @2, @3, @4)";
+            db.Execute(insertQuery, Name, Description, Price, imagePath, imageThumbPath);
+            // Display the page that lists products.
+            Response.Redirect("~/ListProducts");
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Add Products</title>
+ <style type="text/css">
+    label {float:left; width: 8em; text-align: right;
+           margin-right: 0.5em;}
+
+    legend {padding: 2px 4px; font-weight:bold;}
+    .validation-summary-errors {font-weight:bold; color:red;
+           font-size: 11pt;}
+ </style>
+</head>
+<body>
+ <h1>Add New Product</h1>
+
+ @Html.ValidationSummary("Errors with your submission:")
+
+ <form method="post" action="" enctype="multipart/form-data">
+   <fieldset>
+     <legend>Add Product</legend>
+     <div>
+       <label>Name:</label>
+       <input name="Name" type="text" size="50" value="@Name" />
+     </div>
+     <div>
+       <label>Description:</label>
+       <input name="Description" type="text" size="50"
+           value="@Description" />
+     </div>
+     <div>
+       <label>Price:</label>
+       <input name="Price" type="text" size="50" value="@Price" />
+     </div>
+     <div>
+         <div>
+            <label for="Image">Image</label>
+            <input name="Image" type="file" value="@Request.Form["Image"]" />
+            <br />
+        </div>
+       <label>&nbsp;</label>
+       <input type="submit" value="Insert" class="submit" />
+         <ul>
+       <li><a href="~/EditProducts">Edit Products</a></li>
+             <li><a href="~/ListProductsForDelete">Delete Products</a></li>
+             </ul>
+     </div>
+   </fieldset>
+ </form>
+</body>
+</html>

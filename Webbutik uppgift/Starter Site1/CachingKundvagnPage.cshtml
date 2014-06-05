@@ -1,0 +1,50 @@
+﻿@{
+    @* Den här sidan är till för att man ska kunna lägga saker i kundvagnen.
+
+*@
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Kundvagn";
+
+    var theKey = WebSecurity.CurrentUserId.ToString(); @*  Användar ID  *@
+    
+    IList<int> kundvagn = (List<int>)WebCache.Get(theKey);
+    @* Om kundvagnen är tom.  *@
+    if(kundvagn == null)  
+    {
+        kundvagn = new List<int>();
+        
+        kundvagn.Add(Request["ID"].AsInt());    
+        
+        WebCache.Set(theKey, kundvagn);
+    }
+    else
+    {
+        kundvagn.Add(Request["ID"].AsInt());
+    }
+    
+    var db = Database.Open("StarterSite"); @*  Öppnar databasen.  *@
+    var queryString = "Select * from Product where ";
+    for (int i = 0; i < kundvagn.Count; i++)
+    {
+        queryString += "Id = " + kundvagn[i];
+
+        if( (i + 1) != kundvagn.Count)
+        {
+            queryString += " or ";
+        }
+    }
+
+    var produkter = db.Query(queryString);
+    
+
+
+    foreach(var vara in produkter)
+    {
+        <div class="vagnVara">
+            <p>@vara.Name | @vara.Price | <img src="@Href(vara.ThumbImg)" /></p> @*   Skriver ut produkterna i kundvagnen.   *@
+        </div>
+    }
+}
+<hgroup class="title">
+    <h1>@Page.Title.</h1>
+</hgroup>

@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Store";
+     var db = Database.Open("StarterSite");
+    var selectQueryString = "SELECT * FROM Product ORDER BY Name";
+}
+
+<hgroup class="title">
+    <h1>@Page.Title.</h1>
+    <h2>Work in progress!</h2>
+</hgroup>
+
+    
+<title>Small Ost Products</title>
+    <style>
+        table, th, td {
+            border: solid 1px #bbbbbb;
+            border-collapse: collapse;
+            padding: 2px;
+        }
+    </style>
+</head>
+    <h1>Small Ost Products</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product</th>
+                <th>ThumbNail</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th> </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in db.Query(selectQueryString))
+            {
+                <tr>
+                    <td>@row.Id</td>
+                    <td><a href="@Href("~/DisplayProduct?ID=" + row.id)">@row.Name</a></td>
+                    <td><img src="@Href("~/" + row.ThumbImg)" alt="Thumbnail missing" /></td>
+                    <td>@row.Description</td>
+                    <td>@row.Price</td>
+                    <td><a href="@Href("~/CachingKundvagnPage?ID=" + row.id)">Köp</a></td>  
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+
+

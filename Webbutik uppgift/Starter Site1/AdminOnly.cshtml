@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    PageData["Title"] = "Administrators only";
+}
+
+@if ( Roles.IsUserInRole("admin")) {
+    <span> Welcome <b>@WebSecurity.CurrentUserName</b>! </span>
+}
+else {
+     Response.Redirect("~/AdminError"); <!--Om du inte är inloggad som admin så hamnar du på AdminError sidan.-->
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body>
+        
+    </body>
+</html>

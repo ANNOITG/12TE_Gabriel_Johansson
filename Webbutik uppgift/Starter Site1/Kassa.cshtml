@@ -1,0 +1,70 @@
+﻿<hgroup class="title">
+    <h1>@Page.Title Kassa</h1>
+</hgroup>
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+       <title>Kassa</title>
+    </head>
+    <body>
+        <p>Produkter:</p> 
+    </body>
+</html>
+
+
+@{
+ Layout = "~/_SiteLayout.cshtml";
+ Page.Title = "Kassa"; 
+
+ var theKey = WebSecurity.CurrentUserId.ToString(); 
+ var db = Database.Open("StarterSite");     @* Öppnar databas så att man kan hämta ut data. *@
+ IList<int> kundvagn = (List<int>)WebCache.Get(theKey); @* Kundvagns lista. *@
+@* Om kundvagnen är tom. *@
+ if(kundvagn == null)   
+    {
+        kundvagn = new List<int>();
+        
+        kundvagn.Add(Request["ID"].AsInt());
+        
+        WebCache.Set(theKey, kundvagn);
+    }
+    else
+    {
+        kundvagn.Add(Request["ID"].AsInt());
+    }
+     
+     var queryString = "Select * from Product where ";
+     for (int i = 0; i < kundvagn.Count; i++)
+    {
+        queryString += "Id = " + kundvagn[i];
+
+        if( (i + 1) != kundvagn.Count)
+        {
+            queryString += " or ";
+        }
+    }
+     var produkter = db.Query(queryString);
+     
+    
+     int summa = 0; @* Total summa för alla produkter. *@
+
+
+@* För alla varor i produkter. *@
+    foreach(var vara in produkter) 
+    {
+        var totalprice = summa += vara.Price;   @* Priset är summan + priset för alla varor. *@
+        <div class="vagnVara">
+            <p>@vara.Name | @vara.Price | <img src="@Href(vara.ThumbImg)" /></p>
+            <p>Total pris: @totalprice kr</p>
+            <a href="@Href("~/Kassa?ID=" + vara.Id)">Checka ut$$$</a>
+        </div>
+    }
+
+}
+
+    
+
+
